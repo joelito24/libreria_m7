@@ -42,7 +42,7 @@ Desde el panel d'administració d'usuaris podem consultar l'informació dels div
 
 ## Profile
 
-A la capçalera podem trobar el botó amb l'icona de perfil, si naveguem fins aquesta vista podrem trobar un formulari on editar les dades del nostre usuari
+A la capçalera podem trobar el botó amb l'icona de perfil, si naveguem fins aquesta vista podrem trobar un formulari on editar les dades del nostre usuari y una tabla amb els llibres prestats actualment y un buton per tornarlo.
 
 ## Maquetació
 
@@ -51,4 +51,43 @@ La maquetació d'aquest framework s'ha fet utilitzant el bootsrap de manera corr
 
 
 
+
+## Creacion bbdd
+
+CREATE TABLE libros(
+	idlibro INT NOT NULL UNIQUE AUTO_INCREMENT,
+	isbn VARCHAR(40) NOT NULL UNIQUE,
+	titulo VARCHAR(30) NOT NULL,
+	link VARCHAR(250) NOT NULL,
+	npaginas INT,
+	descripcion VARCHAR(250),
+	autor VARCHAR(100),
+	CONSTRAINT PRIMARY KEY (idlibro)
+);
+
+CREATE TABLE usuarios(
+	idusuario INT NOT NULL AUTO_INCREMENT,
+	usuario VARCHAR(35) NOT NULL,
+	contrasenia VARCHAR(250) NOT NULL,
+	nombre VARCHAR(40) NOT NULL,
+	apellidos VARCHAR(100) NOT NULL,
+	email VARCHAR(100) NOT NULL UNIQUE,
+	telefono VARCHAR(10) ,
+	rol VARCHAR(15),
+	CONSTRAINT PRIMARY KEY (idusuario)
+);	
+
+CREATE TABLE prestamo(
+	idprestamo INT NOT NULL UNIQUE AUTO_INCREMENT,
+	idusuario INT NOT NULL ,
+	idlibro INT NOT NULL ,
+	fecha DATE NOT NULL,
+	CONSTRAINT PRIMARY KEY (idprestamo),
+	CONSTRAINT clientes_prestamo_fk FOREIGN KEY (idusuario) REFERENCES usuarios(idusuario) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT libro_prestamo_fk FOREIGN KEY (idlibro) REFERENCES libros(idlibro) ON UPDATE CASCADE ON DELETE CASCADE
+
+);
+
+
+La base de dades consta de 3 taules; Libros, Usuarios y Prestamo.
 

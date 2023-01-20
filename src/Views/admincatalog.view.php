@@ -7,7 +7,7 @@
 <body>
 <style type="text/css">
 
-/* TABLA */  
+/* TABLA */ 
 .tftable {font-size:12px;color:black;width:100%;border-width: 3px;border-color: black;}
 .tftable th {font-size:20px;background-color:#B13333;border-width: 1px;padding: 8px;border-style: solid;border-color: black;text-align:left;text-align: left;top: 0;position: sticky;}
 .tftable tr {background-color:#ffffff;}

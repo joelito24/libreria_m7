@@ -45,6 +45,10 @@ final class AdmincatalogController extends Controller{
     $this->qb->insert('libros',$data);
 
     
+    $this->redirect('/admincatalog');
+    
+
+    
   }
 
   public function update(){

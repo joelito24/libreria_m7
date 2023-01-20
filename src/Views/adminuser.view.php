@@ -44,7 +44,7 @@ if(isset($_SESSION['error'])){ $_SESSION['error'] = array();};
     </thead>
     <tbody>
         <?php foreach ($data as $user) : ?>
-            <tr>
+            <tr onclick="trData(this)" data-toggle="modal" data-target="#form" data-id='<?= $user->idusuario ?>'>
                 <td><?= $user->idusuario ?></td>
                 <td><?= $user->usuario ?></td>
                 <td><?= $user->contrasenia ?></td>
@@ -80,50 +80,50 @@ if(isset($_SESSION['error'])){ $_SESSION['error'] = array();};
 
           <!-- Input-->
           <div class="form-group">
-            <label for="isbnname">USUARIO</label>
-            <input type="text" class="form-control" name="isbnname" id="isbn" aria-describedby="emailHelp" value=''>
+            <label for="usuarioname">USUARIO</label>
+            <input type="text" class="form-control" name="usuarioname" id="usuario" aria-describedby="emailHelp" value=''>
           </div>
 
           <!-- Input-->
           <div class="form-group">
-            <label for="tituloname">CONTRASEÑA</label>
-            <input type="text" class="form-control" name="tituloname" id="titulo" aria-describedby="emailHelp" value=''>
+            <label for="contrasenianame">CONTRASEÑA</label>
+            <input type="text" class="form-control" name="contrasenianame" id="contrasenia" aria-describedby="emailHelp" value='' disabled>
           </div>
 
           <!-- Input-->
           <div class="form-group">
-            <label for="linkname">NOMBRE</label>
-            <input type="text" class="form-control" name="linkname" id="link" aria-describedby="emailHelp" value=''>
+            <label for="nombrename">NOMBRE</label>
+            <input type="text" class="form-control" name="nombrename" id="nombre" aria-describedby="emailHelp" value=''>
           </div>
 
           <!-- Input-->
           <div class="form-group">
-            <label for="numpagname">APELLIDOS</label>
-            <input type="text" class="form-control" name="numpagname" id="npaginas" aria-describedby="emailHelp" value=''>
+            <label for="apellidosname">APELLIDOS</label>
+            <input type="text" class="form-control" name="apellidosname" id="apellidos" aria-describedby="emailHelp" value=''>
           </div>
 
           <!-- Input-->
           <div class="form-group">
-            <label for="descriptionname">EMAIL</label>
-            <input type="text" class="form-control" name="descriptionname" id="descripcion" aria-describedby="emailHelp" value=''>
+            <label for="emailname">EMAIL</label>
+            <input type="text" class="form-control" name="emailname" id="email" aria-describedby="emailHelp" value=''>
           </div>
 
           <!-- Input-->
           <div class="form-group">
-            <label for="autorname">TELEFONO</label>
-            <input type="text" class="form-control" name="autorname" id="autor" aria-describedby="emailHelp" value=''>
+            <label for="telefononame">TELEFONO</label>
+            <input type="text" class="form-control" name="telefononame" id="telefono" aria-describedby="emailHelp" value=''>
           </div>
 
           <!-- Input-->
           <div class="form-group">
-            <label for="valoracionname">ROL</label>
-            <input type="text" class="form-control" name="valoracionname" id="valoracion" aria-describedby="emailHelp" value=''>
+            <label for="rolname">ROL</label>
+            <input type="text" class="form-control" name="rolname" id="rol" aria-describedby="emailHelp" value=''>
           </div>
 
         </div>
         <div class="modal-footer border-top-0 d-flex justify-content-center">
-          <button type="submit" class="btn btn-primary" formaction="/admincatalog/update" button-book">Update</button>
-          <button type="submit" class="btn btn-danger" formaction="/admincatalog/delete" button-book">Delete</button>
+          <button type="submit" class="btn btn-primary" formaction="/adminuser/update" button-book">Update</button>
+          <button type="submit" class="btn btn-danger" formaction="/adminuser/delete" button-book">Delete</button>
         </div>
       </form>
     </div>
@@ -135,26 +135,26 @@ if(isset($_SESSION['error'])){ $_SESSION['error'] = array();};
 <table class=" tftable table table-hover bg-light">
     <thead>
         <tr>
-            <th>ISBN</th>
-            <th>TITULO</th>
-            <th>LINK</th>
-            <th>Nº PAGINAS</th>
-            <th>DESCRIPCION</th>
-            <th>AUTOR</th>
-            <th>VALORACION</th>
+            <th>USUARIO</th>
+            <th>PASSWD</th>
+            <th>NOMBRE</th>
+            <th>APELLIDOS</th>
+            <th>EMAIL</th>
+            <th>TELEFONO</th>
+            <th>ROL</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
             <tr>
-                <td> <input type="text" form="create" name="cisbn" id="isbn" value='' required></td>
-                <td> <input type="text" form="create" name="ctitulo" id="isbn" value='' required></td>
-                <td> <input type="text" form="create" name="clink" id="isbn" value='' required></td>
-                <td> <input type="text" form="create" name="cnpaginas" id="isbn" value='' required></td>
-                <td> <input type="text" form="create" name="cdescription" id="isbn" value='' required></td>
-                <td> <input type="text" form="create" name="cautor" id="isbn" value='' required></td>
-                <td> <input type="text" form="create" name="cvaloracion" id="isbn" value='' required></td>
-                <td> <button type="submit" class="btn btn-success" form="create" formaction="/admincatalog/create" button-book">Create</button> </td>
+                <td> <input type="text" form="create" name="cusuario" id="isbn" value='' required></td>
+                <td> <input type="text" form="create" name="ccontrasenia" id="isbn" value='' required></td>
+                <td> <input type="text" form="create" name="cnombre" id="isbn" value='' required></td>
+                <td> <input type="text" form="create" name="capellidos" id="isbn" value='' required></td>
+                <td> <input type="text" form="create" name="cemail" id="isbn" value='' required></td>
+                <td> <input type="text" form="create" name="ctelefono" id="isbn" value='' required></td>
+                <td> <input type="text" form="create" name="crol" id="isbn" value='' required></td>
+                <td> <button type="submit" class="btn btn-success" form="create" formaction="/adminuser/create" button-book">Create</button> </td>
             </tr>
     </tbody>
 </table>
@@ -164,21 +164,22 @@ if(isset($_SESSION['error'])){ $_SESSION['error'] = array();};
   function trData(trdata) {
     var trDataId = trdata.getAttribute("data-id");
     $.ajax({
-       url: '/admincatalog/trDataModal',
+       url: '/adminuser/trDataModal',
        type: 'POST',
        data: {trDataId : trDataId},
        success: function(response) {
           var json = JSON.parse(response);
           for (let i in json) {
             for (let j in json[i]) {
-              $('#idlibro').attr("value", json[i][j].idlibro);
-              $('#isbn').attr("value", json[i][j].isbn);
-              $('#titulo').attr("value", json[i][j].titulo);
-              $('#link').attr("value", json[i][j].link);
-              $('#npaginas').attr("value",json[i][j].npaginas);
-              $('#descripcion').attr("value", json[i][j].descripcion);
-              $('#autor').attr("value", json[i][j].autor);
-              $('#valoracion').attr("value", json[i][j].valoracion);
+              
+              $('#idusuario').attr("value", json[i][j].idusuario);
+              $('#usuario').attr("value", json[i][j].usuario);
+              $('#contrasenia').attr("value", json[i][j].contrasenia);
+              $('#nombre').attr("value", json[i][j].nombre);
+              $('#apellidos').attr("value",json[i][j].apellidos);
+              $('#email').attr("value", json[i][j].email);
+              $('#telefono').attr("value", json[i][j].telefono);
+              $('#rol').attr("value", json[i][j].rol);
               }
           }
        }

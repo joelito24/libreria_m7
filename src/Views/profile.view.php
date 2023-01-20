@@ -1,14 +1,34 @@
 
 <?php include 'partials/header.view.php' ?>
-<?php 
-// var_dump($data['usuariosQuery']);
 
-
-?>
 <title>Perfil</title>
 
 <body class="body">
 <section class="home">
+
+<div class='outer'>
+<table class=" tftable table table-hover bg-light">
+    <thead>
+        <tr>
+            <th>ISBN</th>
+            <th>TITULO</th>
+            <th>AUTOR</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($data['prestados'] as $user) : ?>
+            <tr>
+                <td><?= $user->isbn ?></td>
+                <td><?= $user->titulo ?></td>
+                <td><?= $user->autor ?></td>
+                <td><button onclick="quitarPrestamo(this)" type="submit" class="btn btn-primary" data-id="<?= $user->idlibro ?>">Devolver</button></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+</div>
+  
  <div class="container-section-register">
   <h1 class="title-principal">Datos de Perfil</h1>
  </div>
@@ -33,7 +53,6 @@
       <div class="container-button-form">
         <button type="submit" class="button">Update</button>
       </div>
-<!--       <button type="button" onclick="updateUserBtn()">Update User</button> -->
     </div>
   </form>
       </div>
@@ -48,29 +67,20 @@
 <!-- <script type="text/javascript" src="updateDatosCliente.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/JavaScript">
-  function updateUserBtn() {
-    $('#updateUserForm').submit(function(e) {
-        e.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: 'ProfileController.php?action=updateDatosUser',
-            data: $(this).serialize(),
-            success: function(response)
-            {
-                var jsonData = JSON.parse(response);
-                // user is logged in successfully in the back-end 
-                // let's redirect 
-                if (jsonData.success == "1")
-                {
-                    location.href = 'my_profile.php';
-                }
-                else
-                {
-                    alert('Invalid Credentials!');
-                }
-           }
-       });
-     });
+
+  function quitarPrestamo(prestamoData) {
+    var prestamoDataId = prestamoData.getAttribute("data-id");
+    $.ajax({
+       url: '/profile/deletePrestado',
+       type: 'POST',
+       data: {prestamoDataId : prestamoDataId},
+       success: function(response) {
+         location.reload();
+    
+       }
+    });
   }
+
+  
 </script>
 </html>

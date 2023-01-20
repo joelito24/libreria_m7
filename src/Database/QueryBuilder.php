@@ -93,7 +93,6 @@
           $bindv=substr($bindv,0,-1);
 
           $sql="INSERT INTO {$table}({$columns}) VALUES ({$bindv})";
-           // print_r($values);die();
           
               try{
                   $stmt=$this->query($sql);
@@ -185,6 +184,25 @@
                
                 $inners="{$table1}.{$join1} = {$table2}.{$join2}";
                 $cond="{$table2}.{$join2} IS NULL";
+                
+            $sql="SELECT {$columns} FROM {$table1} LEFT JOIN {$table2} ON {$inners} WHERE {$cond} ";
+                $stmt=$this->query($sql);
+                $stmt->execute();
+                $rows=$stmt->fetchAll(\PDO::FETCH_OBJ);
+                return $rows;  
+    }
+
+    function selectWhereWithLeftJoinNotNull($table1,$table2,array $fields=null,string $join1,string $join2):array
+    {
+      if (is_array($fields)){
+                    $columns=implode(',',$fields);
+                    
+                }else{
+                    $columns="*";
+                }
+               
+                $inners="{$table1}.{$join1} = {$table2}.{$join2}";
+                $cond="{$table2}.{$join2} IS NOT NULL";
                 
             $sql="SELECT {$columns} FROM {$table1} LEFT JOIN {$table2} ON {$inners} WHERE {$cond} ";
                 $stmt=$this->query($sql);
